@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Badge, Button, Row, Col } from 'reactstrap';
+import { Badge, Button, Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 
@@ -80,7 +80,6 @@ class TestFailure extends React.PureComponent {
               <Badge
                 color="secondary"
                 className="ml-2 mr-3"
-                title="Confidence in this classification guess"
               >
                 {confidence}
               </Badge>

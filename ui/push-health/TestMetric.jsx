@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { UncontrolledTooltip } from 'reactstrap';
 
 import ClassificationGroup from './ClassificationGroup';
 import UnsupportedGroup from './UnsupportedGroup';
@@ -13,7 +14,7 @@ export default class TestMetric extends React.PureComponent {
     const needInvestigationLength = Object.keys(needInvestigation).length;
 
     return (
-      <Metric name={name} result={result}>
+      <Metric name={name} result={result} description="Need more than 50% passing to be an intermittent.">
         <div className="border-bottom border-secondary">
           <ClassificationGroup
             group={needInvestigation}
