@@ -31,9 +31,7 @@ export default class Navigation extends React.PureComponent {
             </a>
           </Badge>
         </h4>
-        <span>
-          <Login user={user} setUser={setUser} notify={notify} />
-        </span>
+        <Login user={user} setUser={setUser} notify={notify} />
       </Navbar>
     );
   }

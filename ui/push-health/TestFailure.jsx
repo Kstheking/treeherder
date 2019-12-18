@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Badge, Button, Row, Col, UncontrolledTooltip } from 'reactstrap';
+import { Badge, Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 
@@ -58,11 +58,16 @@ class TestFailure extends React.PureComponent {
       tier,
     } = failure;
     const { detailsShowing } = this.state;
+    const passFailRate =
+      passJobs.length +
+      passInFailedJobs.length / failJobs.length +
+      passJobs.length +
+      passInFailedJobs.length * 100;
 
     return (
       <Col className="mt-2 mb-3 ml-2" key={key}>
         <Row className="border-bottom border-secondary justify-content-between">
-          <span>
+          <Row className="ml-1 w-100">
             <span
               color="secondary"
               className="font-weight-bold text-uppercase mr-1"
@@ -73,14 +78,17 @@ class TestFailure extends React.PureComponent {
             {tier > 1 && (
               <span className="ml-1 small text-muted">[tier-{tier}]</span>
             )}
-          </span>
+            <span
+              title="Greater than 50% will convert this to an intermittent"
+              className="ml-auto"
+            >
+              <strong>Pass/Fail Rate:</strong> {passFailRate}%
+            </span>
+          </Row>
           {!!confidence && (
             <span title="Best guess at a classification" className="ml-auto">
               {classificationMap[suggestedClassification]}
-              <Badge
-                color="secondary"
-                className="ml-2 mr-3"
-              >
+              <Badge color="secondary" className="ml-2 mr-3">
                 {confidence}
               </Badge>
             </span>

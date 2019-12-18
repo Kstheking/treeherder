@@ -4,18 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPlusSquare,
   faMinusSquare,
-  faQuestionCircle,
 } from '@fortawesome/free-regular-svg-icons';
-import {
-  Button,
-  Badge,
-  Row,
-  Col,
-  Collapse,
-  Card,
-  CardBody,
-  UncontrolledTooltip,
-} from 'reactstrap';
+import { Button, Badge, Row, Col, Collapse, Card, CardBody } from 'reactstrap';
 
 import { resultColorMap } from './helpers';
 
@@ -36,7 +26,7 @@ export default class Metric extends React.PureComponent {
 
   render() {
     const { detailsShowing } = this.state;
-    const { result, name, children, description } = this.props;
+    const { result, name, children } = this.props;
     const resultColor = resultColorMap[result];
     const expandIcon = detailsShowing ? faMinusSquare : faPlusSquare;
     const expandTitle = detailsShowing ? 'Minus sign' : 'Plus sign';
@@ -47,31 +37,19 @@ export default class Metric extends React.PureComponent {
           <div className={`bg-${resultColor} pr-2 mr-2`} />
           <Col>
             <Row className="justify-content-between">
-              <span>
-                <Button
-                  onClick={this.toggleDetails}
-                  outline
-                  className="border-0"
-                  aria-expanded={detailsShowing}
-                >
-                  <span className="metric-name align-top font-weight-bold">
-                    {name}
-                  </span>
-                  <span className="btn">
-                    <FontAwesomeIcon icon={expandIcon} title={expandTitle} />
-                  </span>
-                </Button>
-                {!!description && (
-                  <React.Fragment>
-                    <span id={`metricInfo${name}`}>
-                      <FontAwesomeIcon icon={faQuestionCircle} />
-                    </span>
-                    <UncontrolledTooltip target={`metricInfo${name}`}>
-                      {description}
-                    </UncontrolledTooltip>
-                  </React.Fragment>
-                )}
-              </span>
+              <Button
+                onClick={this.toggleDetails}
+                outline
+                className="border-0"
+                aria-expanded={detailsShowing}
+              >
+                <span className="metric-name align-top font-weight-bold">
+                  {name}
+                </span>
+                <span className="btn">
+                  <FontAwesomeIcon icon={expandIcon} title={expandTitle} />
+                </span>
+              </Button>
               <span>
                 <Badge color={resultColor} className="ml-1 text-uppercase">
                   {result}
@@ -94,9 +72,4 @@ Metric.propTypes = {
   result: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
-  description: PropTypes.string,
-};
-
-Metric.defaultProps = {
-  description: '',
 };
